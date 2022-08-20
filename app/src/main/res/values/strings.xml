@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">RecipesApp</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="log_in">log In</string>
+    <string name="profile_name">profile name</string>
+    <string name="login_to_your_account">Login to your account</string>
+    <string name="find_your_favorite_food">Find Your Favorite Food</string>
+    <string name="take_a_photo">Take a photo</string>
+    <string name="choose_from_gallery">Choose from gallery</string>
+    <string name="cancel">Cancel</string>
+    <string name="per_serving_100g">Per serving - 100g</string>
+    <string name="per_serving">Per serving</string>
+    <string name="servings">Servings:</string>
 </resources>

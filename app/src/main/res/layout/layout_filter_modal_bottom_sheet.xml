@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_16"
+            android:fontFamily="@font/cabin_condensed_bold"
+            android:gravity="center"
+            android:text="@string/find_your_favorite_food"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_40" />
+
+        <EditText
+            android:id="@+id/searchEditText"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_margin="@dimen/dp_8"
+            android:background="@drawable/bg_rounded_search"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="9dp"
+            android:fontFamily="@font/cabin"
+            android:hint="What do you want to order?"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:fontFamily="@font/cabin_condensed_bold"
+            android:gravity="center"
+            android:text="Diet"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_25" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/dietFilterChips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_1"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cabin"
+                android:text="balanced"
+                android:textColor="@color/text_orange"
+                android:textSize="@dimen/sp_16"
+
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_2"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="high-fiber"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_3"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="high-protein"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_4"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="low-carb"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_5"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="low-fat"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_6"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="low-sodium"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:fontFamily="@font/cabin_condensed_bold"
+            android:gravity="center"
+            android:text="Health"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_25" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/healthFilterChips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_10"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cabin"
+                android:text="alcohol-cocktail"
+                android:textColor="@color/text_orange"
+                android:textSize="@dimen/sp_16"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_11"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="alcohol-free"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_12"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="celery-free"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_13"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="dairy-free"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_14"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="egg-free"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_15"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fish-free"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_16"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="gluten-free"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_17"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="kosher"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_18"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fish-free"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_19"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="low-fat-abs"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_20"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="low-sugar"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_21"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="no-oil-added"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_22"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="peanut-free"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_23"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tree-nut-free"
+
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_24"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="red-meat-free"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_25"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="soy-free"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_26"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sugar-conscious"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_27"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sulfite-free"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_28"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="pork-free"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_29"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="vegan"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_30"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="wheat-free"
+                android:textColor="@color/text_orange"
+                app:chipBackgroundColor="@color/yellow_orange" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/searchButton"
+            android:layout_width="@dimen/dp_350"
+            android:layout_height="@dimen/dp_60"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dp_16"
+            android:background="@drawable/bg_button"
+            android:enabled="false"
+            android:fontFamily="@font/cabin_condensed_bold"
+            android:text="Search"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_20" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

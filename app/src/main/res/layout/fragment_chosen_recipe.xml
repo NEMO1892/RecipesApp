@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_share_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/dp_16"
+        android:backgroundTint="@color/green"
+        app:srcCompat="@drawable/ic_share"
+        tools:ignore="RtlHardcoded" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_white"
+        android:clickable="true"
+        android:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/foodImageView"
+                android:layout_width="413dp"
+                android:layout_height="413dp"
+                android:background="@drawable/bg_rounded"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/backImageButton"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_60"
+                android:layout_margin="@dimen/dp_16"
+                android:background="@drawable/bg_rounded_green_flag"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/saveToFavoritesImageButton"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_60"
+                android:layout_margin="@dimen/dp_16"
+                android:background="@drawable/bg_rounded_green_flag"
+                android:src="@drawable/ic_empty_heart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/customLinearLayout"
+                android:layout_width="300dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="263dp"
+                android:background="@drawable/bg_rounded"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/backImageButton">
+
+                <TextView
+                    android:id="@+id/labelTextView"
+                    android:layout_width="200dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:fontFamily="@font/cabin_condensed_bold"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_25" />
+
+                <TextView
+                    android:id="@+id/countIngredientsTextView"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_50"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:gravity="center"
+                    android:textSize="@dimen/sp_16" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:src="@drawable/ic_fire" />
+
+                    <TextView
+                        android:id="@+id/caloriesTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:fontFamily="@font/cabin"
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_50"
+                        android:src="@drawable/ic_dish_plate" />
+
+                    <TextView
+                        android:id="@+id/countServingsTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:fontFamily="@font/cabin" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_margin="@dimen/dp_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/customLinearLayout" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_16"
+                android:padding="@dimen/dp_16"
+                app:cardBackgroundColor="@color/green"
+                app:cardCornerRadius="@dimen/dp_8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pieChart">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/pieChart">
+
+                    <TextView
+                        android:id="@+id/ingredientsUnusefulTextView"
+                        android:layout_width="@dimen/dp_200"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_16"
+                        android:fontFamily="@font/cabin_condensed_bold"
+                        android:text="Ingredients"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_25"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/pieChart" />
+
+                    <TextView
+                        android:id="@+id/ingredientsTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_16"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:fontFamily="@font/cabin"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_20"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ingredientsUnusefulTextView" />
+
+                    <TextView
+                        android:id="@+id/dietUnusefulTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_16"
+                        android:fontFamily="@font/cabin_condensed_bold"
+                        android:text="Diet:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_25"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ingredientsTextView" />
+
+                    <TextView
+                        android:id="@+id/dietTextView"
+                        android:layout_width="@dimen/dp_300"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_16"
+                        android:fontFamily="@font/cabin"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_20"
+                        app:layout_constraintStart_toEndOf="@id/dietUnusefulTextView"
+                        app:layout_constraintTop_toBottomOf="@id/ingredientsTextView" />
+
+                    <TextView
+                        android:id="@+id/healthUnusefulTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_16"
+                        android:fontFamily="@font/cabin_condensed_bold"
+                        android:text="Health:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_25"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/dietTextView" />
+
+                    <TextView
+                        android:id="@+id/healthTextView"
+                        android:layout_width="@dimen/dp_300"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_16"
+                        android:fontFamily="@font/cabin"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_20"
+                        app:layout_constraintStart_toEndOf="@id/healthUnusefulTextView"
+                        app:layout_constraintTop_toBottomOf="@id/dietTextView" />
+
+                    <TextView
+                        android:id="@+id/cuisineTypeUnusefulTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_16"
+                        android:fontFamily="@font/cabin_condensed_bold"
+                        android:text="Cuisine Type:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_25"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/healthTextView" />
+
+                    <TextView
+                        android:id="@+id/cuisineTypeTextView"
+                        android:layout_width="@dimen/dp_300"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_16"
+                        android:fontFamily="@font/cabin"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_20"
+                        app:layout_constraintStart_toEndOf="@id/cuisineTypeUnusefulTextView"
+                        app:layout_constraintTop_toBottomOf="@id/healthTextView" />
+
+                    <TextView
+                        android:id="@+id/mealTypeUnusefulTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_16"
+                        android:fontFamily="@font/cabin_condensed_bold"
+                        android:text="Meal Type:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_25"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cuisineTypeTextView" />
+
+                    <TextView
+                        android:id="@+id/mealTypeTextView"
+                        android:layout_width="@dimen/dp_300"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_16"
+                        android:fontFamily="@font/cabin"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_20"
+                        app:layout_constraintStart_toEndOf="@id/mealTypeUnusefulTextView"
+                        app:layout_constraintTop_toBottomOf="@id/cuisineTypeTextView" />
+
+                    <TextView
+                        android:id="@+id/dishTypeUnusefulTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_16"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/cabin_condensed_bold"
+                        android:text="Dish Type:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_25"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/mealTypeTextView" />
+
+                    <TextView
+                        android:id="@+id/dishTypeTextView"
+                        android:layout_width="@dimen/dp_300"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_16"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/cabin"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_20"
+                        app:layout_constraintStart_toEndOf="@id/dishTypeUnusefulTextView"
+                        app:layout_constraintTop_toBottomOf="@id/mealTypeTextView" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
