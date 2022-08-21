@@ -29,7 +29,7 @@
 
     <TextView
         android:id="@+id/perServingTextView"
-        android:layout_width="105dp"
+        android:layout_width="@dimen/dp_105"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_5"
         android:layout_marginTop="@dimen/dp_4"
@@ -42,7 +42,7 @@
 
     <TextView
         android:id="@+id/caloriesTextView"
-        android:layout_width="150dp"
+        android:layout_width="@dimen/dp_150"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_5"
         android:layout_marginTop="@dimen/dp_4"

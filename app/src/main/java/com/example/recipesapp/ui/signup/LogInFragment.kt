@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.R
 import com.example.recipesapp.databinding.FragmentLogInBinding
-import com.example.recipesapp.ui.navigation.BottomNavigationFragment
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 
 class LogInFragment : Fragment() {
@@ -47,10 +47,7 @@ class LogInFragment : Fragment() {
                 )
             }
             moveToSignUpTextView.setOnClickListener {
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.container, SignUpFragment())
-                    .addToBackStack("")
-                    .commit()
+                findNavController().navigate(R.id.action_logInFragment_to_signUpFragment)
             }
         }
     }
@@ -66,14 +63,12 @@ class LogInFragment : Fragment() {
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         if (auth.currentUser?.isEmailVerified == true) {
-                            parentFragmentManager.beginTransaction()
-                                .replace(R.id.container, BottomNavigationFragment())
-                                .commit()
+                            findNavController().navigate(R.id.action_logInFragment_to_bottomNavigationFragment)
                         } else {
-                            Toast.makeText(
-                                requireContext(),
-                                "You should verify your account!",
-                                Toast.LENGTH_LONG
+                            Snackbar.make(
+                                requireView(),
+                                R.string.you_should_verify_your_account,
+                                Snackbar.LENGTH_LONG
                             ).show()
                         }
 
@@ -86,13 +81,13 @@ class LogInFragment : Fragment() {
 
     private fun showEmptyEmailError() {
         binding?.run {
-            emailLogInTextField.error = "Email must contain at least 1 character!"
+            emailLogInTextField.error = "Invalid email"
         }
     }
 
     private fun showEmptyPasswordError() {
         binding?.run {
-            passwordLogInTextField.error = "Password must contain at least 1 character"
+            passwordLogInTextField.error = "Password must contain at least 6 characters"
         }
     }
 

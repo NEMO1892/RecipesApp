@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.example.recipesapp.R
 import com.example.recipesapp.databinding.FragmentBottomSheetBinding
 import com.example.recipesapp.di.MyApplication
-import com.example.recipesapp.ui.favourite.FavouritesFragment
-import com.example.recipesapp.ui.list.ListRecipesFragment
-import com.example.recipesapp.ui.profile.ProfileFragment
 import javax.inject.Inject
 
 class BottomNavigationFragment : Fragment() {
@@ -42,39 +41,19 @@ class BottomNavigationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding?.run {
-            viewModel.run {
-                listDisneyRecipes.observe(viewLifecycleOwner) {
-                    chipNavigationBar.showBadge(R.id.liked, it.size)
-                }
-                getAllRecipes()
-            }
 
-            chipNavigationBar.setItemSelected(R.id.search, true)
-            parentFragmentManager.beginTransaction()
-                .add(R.id.containerForBottomNavigationSheet, ListRecipesFragment())
-//            .addToBackStack("")
-                .commit()
-            chipNavigationBar.setOnItemSelectedListener {
-                when (it) {
-                    R.id.search -> {
-                        parentFragmentManager.beginTransaction()
-                            .add(R.id.containerForBottomNavigationSheet, ListRecipesFragment())
-//                        .addToBackStack("")
-                            .commit()
-                    }
-                    R.id.liked -> {
-                        parentFragmentManager.beginTransaction()
-                            .add(R.id.containerForBottomNavigationSheet, FavouritesFragment())
-//                        .addToBackStack("")
-                            .commit()
-                    }
-                    R.id.profile -> {
-                        parentFragmentManager.beginTransaction()
-                            .add(R.id.containerForBottomNavigationSheet, ProfileFragment())
-                            .commit()
-                    }
-                }
-            }
+            val navHost =
+                childFragmentManager.findFragmentById(R.id.bottom_nav_container) as NavHostFragment
+            val navController = navHost.navController
+            NavigationUI.setupWithNavController(chipNavigationBar, navController)
+
+
+//            viewModel.run {
+//                listDisneyRecipes.observe(viewLifecycleOwner) {
+//                    chipNavigationBar.showBadge(R.id.liked, it.size)
+//                }
+//                getAllRecipes()
+//            }
         }
     }
 }

@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     android:background="@color/background_white"
     android:clickable="true"
-    android:visibility="visible"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:visibility="visible">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

@@ -118,7 +118,7 @@ class SignUpFragment : Fragment() {
                 if (task.isSuccessful) {
                     Snackbar.make(
                         requireView(),
-                        "Verification email has been sent!",
+                        R.string.verification_email_has_been_sent,
                         Snackbar.LENGTH_LONG
                     )
                         .setAction("OK") {}
@@ -127,7 +127,7 @@ class SignUpFragment : Fragment() {
                 } else {
                     Snackbar.make(
                         requireView(),
-                        "Verification email not sent!",
+                        R.string.verification_email_not_sent,
                         Snackbar.LENGTH_LONG
                     )
                         .setAction("OK") {}
@@ -147,7 +147,7 @@ class SignUpFragment : Fragment() {
                         .commit()
                 }
                 .addOnFailureListener {
-                    Snackbar.make(requireView(), "Not Uploaded", Snackbar.LENGTH_LONG)
+                    Snackbar.make(requireView(), R.string.not_uploaded, Snackbar.LENGTH_LONG)
                         .setAction("OK") {}
                         .show()
                     binding?.loadingProgressBar?.visibility = View.INVISIBLE
@@ -157,19 +157,19 @@ class SignUpFragment : Fragment() {
 
     private fun showEmptyProfileError() {
         binding?.run {
-            profileNameTextField.error = "Profile name must contain at least 2 character!"
+            profileNameTextField.error = "Profile name must contain at least 2 characters!"
         }
     }
 
     private fun showEmptyEmailError() {
         binding?.run {
-            emailSignUpTextField.error = "Email must contain at least 1 character!"
+            emailSignUpTextField.error = "Invalid email!"
         }
     }
 
     private fun showEmptyPasswordError() {
         binding?.run {
-            emailSignUpTextField.error = "Password must contain at least 1 character"
+            emailSignUpTextField.error = "Password must contain at least 6 characters"
         }
     }
 

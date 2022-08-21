@@ -13,13 +13,9 @@ const val DEFAULT_PREFERENCE = "default_preference"
 
 const val LIST_RECIPES = "list_recipes"
 
-const val IS_PROFILE = false
-
 const val PROFILE_NAME = "profile_name"
 
 const val LIST_TYPES_OF_DISHES = "list_types_of_dishes"
-
-const val PROFILE_PHOTO = "profile_photo"
 
 @Singleton
 class SharedPreferencesRepository @Inject constructor(context: Context) {
@@ -72,17 +68,6 @@ class SharedPreferencesRepository @Inject constructor(context: Context) {
         }
     }
 
-
-//    fun getProfilePhoto(): String? {
-//        return sharedPreferences.getString(PROFILE_PHOTO, "")
-//    }
-//
-//    fun saveProfilePhoto(profilePhoto: String) {
-//        sharedPreferences.edit {
-//            putString(PROFILE_PHOTO, profilePhoto)
-//        }
-//    }
-
     fun getAllRecipes(): ArrayList<Recipe> {
         val listType = object : TypeToken<ArrayList<Recipe>>() {}.type
         val stringRecipe = sharedPreferences.getString(LIST_RECIPES, "")
@@ -126,13 +111,5 @@ class SharedPreferencesRepository @Inject constructor(context: Context) {
             }
         }
         return false
-    }
-
-    fun deleteAllRecipes() {
-        val existList: ArrayList<Recipe> = arrayListOf()
-        val serializeList = Gson().toJson(existList)
-        sharedPreferences.edit {
-            putString(LIST_RECIPES, serializeList)
-        }
     }
 }

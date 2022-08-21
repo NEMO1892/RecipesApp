@@ -6,9 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
+import com.example.recipesapp.R
 import com.example.recipesapp.databinding.LayoutFilterModalBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class FilterModalBottomSheet(
     private val search: (query: String, diet: String?, health: String?) -> Unit
@@ -22,6 +27,12 @@ class FilterModalBottomSheet(
 
     private var diet: String? = ""
 
+    private val auth = FirebaseAuth.getInstance()
+
+    private val database =
+        Firebase.database("https://recipesapp-22212-default-rtdb.europe-west1.firebasedatabase.app")
+            .getReference("Users")
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,6 +44,7 @@ class FilterModalBottomSheet(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        readFirebaseData()
         binding?.run {
             viewModel.run {
                 getDietState()
@@ -79,9 +91,23 @@ class FilterModalBottomSheet(
                 viewModel.saveHealthState(checkedId)
             }
         }
+    }
 
-//        binding?.dietFilterChips?.setOnCheckedStateChangeListener { group, checkedIds ->
-//
-//        }
+    private fun readFirebaseData() {
+        auth.uid?.let {
+            database.child(it).get().addOnSuccessListener { data ->
+                val name = data.child("profileName").value as String?
+                binding?.titleTextView?.text = "Hello, $name"
+            }
+                .addOnFailureListener {
+                    Snackbar.make(
+                        requireView(),
+                        R.string.something_went_wrong_please_try_again_later,
+                        Snackbar.LENGTH_LONG
+                    )
+                        .setAction("Ok") {}
+                        .show()
+                }
+        }
     }
 }

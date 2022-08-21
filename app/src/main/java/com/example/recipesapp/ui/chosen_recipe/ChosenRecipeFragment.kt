@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.recipesapp.PdfDocumentAdapter
 import com.example.recipesapp.R
 import com.example.recipesapp.databinding.FragmentChosenRecipeBinding
@@ -24,8 +26,6 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import javax.inject.Inject
-
-const val ID_RECIPE = "id_recipe"
 
 class ChosenRecipeFragment : Fragment() {
 
@@ -41,6 +41,8 @@ class ChosenRecipeFragment : Fragment() {
     private var fats: Float = 0f
 
     private var carbs: Float = 0f
+
+    private val args: ChosenRecipeFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -100,22 +102,26 @@ class ChosenRecipeFragment : Fragment() {
                 loadDataToPieChart()
 
                 floatingShareButton.setOnClickListener {
-//                    shareContacts(hits.recipe.label)
-                    val printManager =
-                        requireActivity().getSystemService(Context.PRINT_SERVICE) as PrintManager
-                    val printAdapter = PdfDocumentAdapter(requireContext(), "rective")
-                    printManager.print("Document", printAdapter, PrintAttributes.Builder().build())
+                    shareContacts("https://artyom.matveev/recipe/${getRecipeId()}")
+//                    val printManager =
+//                        requireActivity().getSystemService(Context.PRINT_SERVICE) as PrintManager
+//                    val printAdapter = PdfDocumentAdapter(requireContext(), "rective")
+//                    printManager.print("Document", printAdapter, PrintAttributes.Builder().build())
                 }
             }
 
             backImageButton.setOnClickListener {
-                requireActivity().onBackPressed()
+                onBackButtonPressed()
             }
-            arguments?.getString(ID_RECIPE)?.let {
-                viewModel.getOneCharacter(it)
-            }
+            viewModel.getOneCharacter(getRecipeId())
         }
     }
+
+    private fun onBackButtonPressed() {
+        findNavController().popBackStack()
+    }
+
+    private fun getRecipeId(): String = args.idRecipe
 
     private fun checkHeart(recipe: Recipe) {
         if (viewModel.isRecipeAdded(recipe)) {
@@ -172,7 +178,7 @@ class ChosenRecipeFragment : Fragment() {
             Intent(
                 Intent.ACTION_SEND
             ).apply {
-                putExtra(Intent.EXTRA_TEXT, "label is $label")
+                putExtra(Intent.EXTRA_TEXT, label)
                 type = "text/*"
             })
     }

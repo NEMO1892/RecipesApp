@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
+    id("androidx.navigation.safeargs")
+
 }
 
 android {
@@ -86,6 +88,11 @@ dependencies {
     implementation "com.leinardi.android:speed-dial:3.3.0"
 
     implementation 'com.github.ismaeldivita:chip-navigation-bar:1.4.0'
+
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.1'
+
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.1'
+
 
     implementation 'info.hoang8f:fbutton:1.0.5'
 }

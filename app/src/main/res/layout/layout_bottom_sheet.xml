@@ -20,7 +20,7 @@
             android:layout_width="@dimen/dp_100"
             android:layout_height="@dimen/dp_100"
             app:civ_border_color="@color/green1"
-            app:civ_border_width="3dp" />
+            app:civ_border_width="@dimen/dp_3" />
 
     </LinearLayout>
 
@@ -51,9 +51,9 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_10"
         android:background="@color/color_bottom_sheet" />
 
     <LinearLayout

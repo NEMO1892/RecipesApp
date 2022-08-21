@@ -15,13 +15,14 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.navOptions
 import com.example.recipesapp.R
 import com.example.recipesapp.databinding.FragmentProfileBinding
 import com.example.recipesapp.di.MyApplication
 import com.example.recipesapp.model.User
 import com.example.recipesapp.ui.edit_text_bottom_sheet.EditTextModalBottomSheet
-import com.example.recipesapp.ui.signup.LogInFragment
 import com.example.recipesapp.ui.profile_modal_bottom_sheet.ProfileModalBottomSheet
+import com.example.recipesapp.util.findTopNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
@@ -47,8 +48,6 @@ class ProfileFragment : Fragment() {
     private var photoBitMap: Bitmap? = null
 
     private val storage = FirebaseStorage.getInstance()
-
-//    private var contextView: View? = null
 
     private val database =
         Firebase.database("https://recipesapp-22212-default-rtdb.europe-west1.firebasedatabase.app")
@@ -129,9 +128,11 @@ class ProfileFragment : Fragment() {
             }
             signOutButton.setOnClickListener {
                 auth.signOut()
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.container, LogInFragment())
-                    .commit()
+                findTopNavController().navigate(R.id.logInFragment, null, navOptions {
+                    popUpTo(R.id.bottomNavigationFragment) {
+                        inclusive = true
+                    }
+                })
             }
         }
     }
@@ -145,7 +146,11 @@ class ProfileFragment : Fragment() {
                 binding?.emailTextView?.text = email
             }
                 .addOnFailureListener {
-                    Snackbar.make(requireView(), "new profile name saved", Snackbar.LENGTH_LONG)
+                    Snackbar.make(
+                        requireView(),
+                        R.string.something_went_wrong_please_try_again_later,
+                        Snackbar.LENGTH_LONG
+                    )
                         .setAction("Ok") {}
                         .show()
                 }
@@ -160,14 +165,14 @@ class ProfileFragment : Fragment() {
                     profileName = binding?.profileNameTextView?.text.toString()
                 )
             ).addOnSuccessListener {
-                Snackbar.make(requireView(), "new profile name saved", Snackbar.LENGTH_LONG)
+                Snackbar.make(requireView(), R.string.new_profile_name_saved, Snackbar.LENGTH_LONG)
                     .setAction("Ok") {}
                     .show()
             }
                 .addOnFailureListener {
                     Snackbar.make(
                         requireView(),
-                        "Something went wrong, please try again later!",
+                        R.string.something_went_wrong_please_try_again_later,
                         Snackbar.LENGTH_LONG
                     )
                         .setAction("Ok") {}
@@ -180,12 +185,12 @@ class ProfileFragment : Fragment() {
         val storageReference = storage.getReference("images/${auth.uid}")
         storageReference.putFile(uri)
             .addOnCompleteListener {
-                Snackbar.make(requireView(), "new photo saved", Snackbar.LENGTH_LONG)
+                Snackbar.make(requireView(), R.string.new_profile_name_saved, Snackbar.LENGTH_LONG)
                     .setAction("Ok") {}
                     .show()
             }
             .addOnFailureListener {
-                Snackbar.make(requireView(), "Failure", Snackbar.LENGTH_LONG)
+                Snackbar.make(requireView(), R.string.failure, Snackbar.LENGTH_LONG)
                     .setAction("Ok") {}
                     .show()
             }

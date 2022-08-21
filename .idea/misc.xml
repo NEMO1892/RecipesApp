@@ -5,12 +5,26 @@
       <map>
         <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/drawable/background_recipe.xml" value="0.1405" />
         <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/drawable/bg_bottom_sheet.xml" value="0.1405" />
+        <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/drawable/bg_button.xml" value="0.1405" />
+        <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/drawable/bg_main.xml" value="0.1405" />
         <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/font/cabin.xml" value="0.2601851851851852" />
+        <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/layout/activity_deep_link.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/layout/activity_splash.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/layout/fragment_log_in.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/layout/fragment_chosen_recipe.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/layout/fragment_favourites.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/layout/fragment_list_recipes.xml" value="0.264" />
+        <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/layout/fragment_log_in.xml" value="0.264" />
+        <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/layout/fragment_profile.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/layout/fragment_sign_up.xml" value="0.264" />
+        <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/layout/fragment_splash.xml" value="0.253125" />
+        <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/layout/item_recipe.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/layout/layout_bottom_sheet.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/layout/layout_edit_text_bottom_sheet.xml" value="0.264" />
+        <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/layout/layout_filter_modal_bottom_sheet.xml" value="0.264" />
         <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/menu/menu_action_button.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/tema1/AndroidStudioProjects/RecipesApp/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.2175925925925926" />
       </map>
     </option>
   </component>

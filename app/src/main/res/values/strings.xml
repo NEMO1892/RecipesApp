@@ -13,4 +13,26 @@
     <string name="per_serving_100g">Per serving - 100g</string>
     <string name="per_serving">Per serving</string>
     <string name="servings">Servings:</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="diet">Diet:</string>
+    <string name="health">Health:</string>
+    <string name="cuisine_type">Cuisine Type:</string>
+    <string name="meal_type">Meal Type:</string>
+    <string name="dish_type">Dish Type:</string>
+    <string name="what_do_you_want_to_find">What do you want to find?</string>
+    <string name="no_internet_connection">no internet connection</string>
+    <string name="you_don_t_have_an_account">you don\'t have an account?</string>
+    <string name="sign_out">Sign out</string>
+    <string name="enter_your_new_profile_name">Enter your new profile name</string>
+    <string name="accept">Accept</string>
+    <string name="verification_email_has_been_sent">Verification email has been sent!</string>
+    <string name="verification_email_not_sent">Verification email not sent!</string>
+    <string name="not_uploaded">Not uploaded</string>
+    <string name="profile_name_must_contains_at_least_2_characters">Profile name must contain at least 2 characters!</string>
+    <string name="you_should_verify_your_account">You should verify your account!</string>
+    <string name="new_profile_name_saved">new profile name saved</string>
+    <string name="something_went_wrong_please_try_again_later">Something went wrong, please try again later!</string>
+    <string name="new_photo_saved">new photo saved</string>
+    <string name="failure">Failure</string>
+
 </resources>

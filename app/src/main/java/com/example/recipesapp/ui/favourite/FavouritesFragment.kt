@@ -5,17 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.recipesapp.R
 import com.example.recipesapp.databinding.FragmentFavouritesBinding
 import com.example.recipesapp.di.MyApplication
 import com.example.recipesapp.model.Recipe
-import com.example.recipesapp.ui.chosen_recipe.ChosenRecipeFragment
-import com.example.recipesapp.ui.chosen_recipe.ID_RECIPE
 import com.example.recipesapp.ui.list.adapter.ListRecipesAdapter
+import com.example.recipesapp.ui.navigation.BottomNavigationFragmentDirections
+import com.example.recipesapp.util.findTopNavController
 import javax.inject.Inject
 
 class FavouritesFragment : Fragment() {
@@ -56,14 +54,11 @@ class FavouritesFragment : Fragment() {
         binding?.run {
             if (recyclerView.adapter == null) {
                 recyclerView.adapter = ListRecipesAdapter { id: String ->
-                    parentFragmentManager.beginTransaction()
-                        .replace(R.id.container, ChosenRecipeFragment().apply {
-                            arguments = bundleOf(
-                                ID_RECIPE to id
-                            )
-                        })
-                        .addToBackStack("")
-                        .commit()
+                    val action =
+                        BottomNavigationFragmentDirections.actionBottomNavigationFragmentToChosenRecipeFragment(
+                            id
+                        )
+                    findTopNavController().navigate(action)
                 }
                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
             }

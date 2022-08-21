@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -17,11 +16,15 @@ import com.example.recipesapp.databinding.FragmentListRecipesBinding
 import com.example.recipesapp.di.MyApplication
 import com.example.recipesapp.model.Recipe
 import com.example.recipesapp.model.RecipeLoadingState
-import com.example.recipesapp.ui.chosen_recipe.ChosenRecipeFragment
-import com.example.recipesapp.ui.chosen_recipe.ID_RECIPE
 import com.example.recipesapp.ui.filter_modal_bottom_sheet.FilterModalBottomSheet
 import com.example.recipesapp.ui.list.adapter.ListRecipesAdapter
+import com.example.recipesapp.ui.navigation.BottomNavigationFragmentDirections
+import com.example.recipesapp.util.findTopNavController
 import com.google.android.material.chip.Chip
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import javax.inject.Inject
 
 class ListRecipesFragment : Fragment() {
@@ -35,6 +38,12 @@ class ListRecipesFragment : Fragment() {
 
     @Inject
     lateinit var connectivityLiveData: ConnectivityLiveData
+
+    private val auth = FirebaseAuth.getInstance()
+
+    private val database =
+        Firebase.database("https://recipesapp-22212-default-rtdb.europe-west1.firebasedatabase.app")
+            .getReference("Users")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +63,7 @@ class ListRecipesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        readFirebaseData()
         initialiseObservers()
         binding?.run {
             viewModel.run {
@@ -131,6 +141,24 @@ class ListRecipesFragment : Fragment() {
         }
     }
 
+    private fun readFirebaseData() {
+        auth.uid?.let {
+            database.child(it).get().addOnSuccessListener { data ->
+                val name = data.child("profileName").value as String?
+                binding?.titleTextView?.text = "Hello, $name"
+            }
+                .addOnFailureListener {
+                    Snackbar.make(
+                        requireView(),
+                        R.string.something_went_wrong_please_try_again_later,
+                        Snackbar.LENGTH_LONG
+                    )
+                        .setAction("Ok") {}
+                        .show()
+                }
+        }
+    }
+
     private fun onRecipeLoadingStateChanged(state: RecipeLoadingState) {
         binding?.run {
             when (state) {
@@ -151,7 +179,7 @@ class ListRecipesFragment : Fragment() {
                     recyclerView.visibility = View.GONE
                     loadingProgressBar.visibility = View.GONE
                 }
-                else -> {
+                RecipeLoadingState.INVALID_API_KEY -> {
                     statusButton.visibility = View.VISIBLE
                     statusButton.text = "Invalid api key"
                     recyclerView.visibility = View.GONE
@@ -165,16 +193,17 @@ class ListRecipesFragment : Fragment() {
         binding?.run {
             if (recyclerView.adapter == null) {
                 recyclerView.adapter = ListRecipesAdapter { id: String ->
-                    parentFragmentManager.beginTransaction()
-                        .replace(R.id.container, ChosenRecipeFragment().apply {
-                            arguments = bundleOf(ID_RECIPE to id)
-                        })
-                        .addToBackStack("")
-                        .commit()
+                    val action =
+                        BottomNavigationFragmentDirections.actionBottomNavigationFragmentToChosenRecipeFragment(
+                            id
+                        )
+                    findTopNavController().navigate(action)
+
                 }
                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
             }
             (recyclerView.adapter as? ListRecipesAdapter)?.setList(list)
+
         }
     }
 }
