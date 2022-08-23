@@ -12,10 +12,18 @@
         tools:layout="@layout/fragment_log_in">
         <action
             android:id="@+id/action_logInFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
         <action
             android:id="@+id/action_logInFragment_to_bottomNavigationFragment"
             app:destination="@id/bottomNavigationFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
             app:popUpTo="@id/logInFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -31,7 +39,11 @@
         tools:layout="@layout/fragment_bottom_sheet">
         <action
             android:id="@+id/action_bottomNavigationFragment_to_chosenRecipeFragment"
-            app:destination="@id/chosenRecipeFragment" />
+            app:destination="@id/chosenRecipeFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/chosenRecipeFragment"

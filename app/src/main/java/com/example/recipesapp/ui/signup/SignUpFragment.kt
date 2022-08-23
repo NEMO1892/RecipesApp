@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.R
 import com.example.recipesapp.databinding.FragmentSignUpBinding
 import com.example.recipesapp.di.MyApplication
@@ -142,9 +143,7 @@ class SignUpFragment : Fragment() {
         auth.uid?.let {
             database.child(it).setValue(userDb)
                 .addOnSuccessListener {
-                    parentFragmentManager.beginTransaction()
-                        .replace(R.id.container, LogInFragment())
-                        .commit()
+                    findNavController().popBackStack()
                 }
                 .addOnFailureListener {
                     Snackbar.make(requireView(), R.string.not_uploaded, Snackbar.LENGTH_LONG)

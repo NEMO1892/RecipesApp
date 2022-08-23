@@ -19,6 +19,7 @@
             android:id="@+id/profileImageView"
             android:layout_width="@dimen/dp_100"
             android:layout_height="@dimen/dp_100"
+            android:src="@drawable/ic_logo_app"
             app:civ_border_color="@color/green1"
             app:civ_border_width="@dimen/dp_3" />
 
@@ -39,12 +40,11 @@
 
         <TextView
             android:id="@+id/takePhotoTextView"
+            style="@style/text_cabin_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/cabin"
             android:gravity="center"
             android:text="@string/take_a_photo"
-            android:textColor="@color/black"
             android:textSize="@dimen/sp_20" />
 
     </LinearLayout>
@@ -64,12 +64,11 @@
 
         <TextView
             android:id="@+id/chooseFromGalleryTextView"
+            style="@style/text_cabin_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/cabin"
             android:gravity="center"
             android:text="@string/choose_from_gallery"
-            android:textColor="@color/black"
             android:textSize="@dimen/sp_20" />
 
     </LinearLayout>
@@ -89,12 +88,11 @@
 
         <TextView
             android:id="@+id/cancelTextView"
+            style="@style/text_cabin_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/cabin"
             android:gravity="center"
             android:text="@string/cancel"
-            android:textColor="@color/black"
             android:textSize="@dimen/sp_20" />
 
     </LinearLayout>

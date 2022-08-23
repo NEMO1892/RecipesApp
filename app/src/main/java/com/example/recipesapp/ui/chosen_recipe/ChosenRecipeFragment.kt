@@ -1,11 +1,10 @@
 package com.example.recipesapp.ui.chosen_recipe
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.print.PrintAttributes
-import android.print.PrintManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.recipesapp.PdfDocumentAdapter
 import com.example.recipesapp.R
 import com.example.recipesapp.databinding.FragmentChosenRecipeBinding
 import com.example.recipesapp.di.MyApplication
@@ -60,6 +58,7 @@ class ChosenRecipeFragment : Fragment() {
             ViewModelProvider(this, viewModelProvider)[ChosenRecipeViewModel::class.java]
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.run {
@@ -76,23 +75,30 @@ class ChosenRecipeFragment : Fragment() {
                 }
                 labelTextView.text = hits.recipe.label
                 foodImageView.loadUrlImage(hits.recipe.image)
+                loadingProgressBar.visibility = View.INVISIBLE
                 caloriesTextView.text =
                     (hits.recipe.calories / hits.recipe.yield).toInt().toString() + " kcal"
                 countServingsTextView.text = hits.recipe.yield.toString() + " serve"
                 countIngredientsTextView.text =
                     hits.recipe.ingredients?.size.toString() + " ingredients"
                 hits.recipe.ingredientLines?.forEach {
-                    ingredientsTextView.append(it + "\n")
+                    ingredientsTextView.append("• $it\n")
                 }
                 hits.recipe.dietLabels?.forEach {
-                    dietTextView.append("$it, ")
+                    dietTextView.append("• $it")
                 }
                 hits.recipe.healthLabels?.forEach {
-                    healthTextView.append("$it, ")
+                    healthTextView.append("• $it")
                 }
-                cuisineTypeTextView.text = hits.recipe.cuisineType.firstOrNull()
-                mealTypeTextView.text = hits.recipe.mealType?.firstOrNull()
-                dishTypeTextView.text = hits.recipe.dishType?.firstOrNull()
+                hits.recipe.cuisineType.forEach {
+                    cuisineTypeTextView.append("• $it")
+                }
+                hits.recipe.mealType?.forEach {
+                    mealTypeTextView.append("• $it")
+                }
+                hits.recipe.dishType?.forEach {
+                    dishTypeTextView.append("• $it")
+                }
                 calculatePercents(
                     hits.recipe.totalNutrients.PROCNT.quantity,
                     hits.recipe.totalNutrients.FAT.quantity,
@@ -100,16 +106,10 @@ class ChosenRecipeFragment : Fragment() {
                 )
                 setUpPieChart()
                 loadDataToPieChart()
-
                 floatingShareButton.setOnClickListener {
                     shareContacts("https://artyom.matveev/recipe/${getRecipeId()}")
-//                    val printManager =
-//                        requireActivity().getSystemService(Context.PRINT_SERVICE) as PrintManager
-//                    val printAdapter = PdfDocumentAdapter(requireContext(), "rective")
-//                    printManager.print("Document", printAdapter, PrintAttributes.Builder().build())
                 }
             }
-
             backImageButton.setOnClickListener {
                 onBackButtonPressed()
             }

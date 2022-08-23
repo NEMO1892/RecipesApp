@@ -27,58 +27,31 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="Autofill" />
 
-<!--        <androidx.appcompat.widget.AppCompatButton-->
-<!--            android:id="@+id/cancel_button"-->
-<!--            android:layout_width="@dimen/dp_100"-->
-<!--            android:layout_height="@dimen/dp_50"-->
-<!--            android:layout_marginStart="@dimen/dp_64"-->
-<!--            android:layout_marginTop="@dimen/dp_60"-->
-<!--            android:background="@color/green"-->
-<!--            android:text="@string/cancel"-->
-<!--            android:textColor="@color/white"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/newProfileEditText" />-->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cancel_button"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginStart="@dimen/dp_64"
+            android:layout_marginTop="@dimen/dp_60"
+            android:background="@drawable/bg_shadow_red"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/newProfileEditText" />
 
-<!--        <androidx.appcompat.widget.AppCompatButton-->
-<!--            android:id="@+id/accept_button"-->
-<!--            android:layout_width="@dimen/dp_100"-->
-<!--            android:layout_height="@dimen/dp_50"-->
-<!--            android:layout_marginTop="@dimen/dp_60"-->
-<!--            android:layout_marginEnd="@dimen/dp_70"-->
-<!--            android:background="@color/red"-->
-<!--            android:text="@string/accept"-->
-<!--            android:textColor="@color/white"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/newProfileEditText" />-->
-
-                <info.hoang8f.widget.FButton
-                    android:id="@+id/cancel_button"
-                    android:layout_width="@dimen/dp_100"
-                    android:layout_height="@dimen/dp_50"
-                    android:layout_marginStart="64dp"
-                    android:layout_marginTop="@dimen/dp_60"
-                    android:text="@string/cancel"
-                    android:textColor="@color/white"
-                    app:buttonColor="@color/red"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/newProfileEditText"
-                    app:layout_constraintVertical_bias="1.0" />
-
-                <info.hoang8f.widget.FButton
-                    android:id="@+id/accept_button"
-                    android:layout_width="@dimen/dp_100"
-                    android:layout_height="@dimen/dp_50"
-                    android:layout_marginTop="@dimen/dp_60"
-                    android:layout_marginEnd="70dp"
-                    android:text="@string/accept"
-                    android:textColor="@color/white"
-                    app:buttonColor="@color/green"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/newProfileEditText" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/accept_button"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginTop="@dimen/dp_60"
+            android:layout_marginEnd="@dimen/dp_70"
+            android:background="@drawable/bg_shadow_green"
+            android:text="@string/accept"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/newProfileEditText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

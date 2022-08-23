@@ -36,7 +36,7 @@ class ListRecipesAdapter(
     override fun getItemCount(): Int = list.size
 
     fun setList(list: ArrayList<Recipe>) {
-        this.list = list
+        this.list.addAll(list)
         notifyDataSetChanged()
     }
 }

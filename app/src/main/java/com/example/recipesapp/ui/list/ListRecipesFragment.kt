@@ -1,15 +1,22 @@
 package com.example.recipesapp.ui.list
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
+import androidx.core.widget.NestedScrollView
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.recipesapp.R
 import com.example.recipesapp.connectivity.ConnectivityLiveData
 import com.example.recipesapp.databinding.FragmentListRecipesBinding
@@ -25,7 +32,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.gson.Gson
+import com.google.gson.JsonParser
+import org.json.JSONException
 import javax.inject.Inject
+
 
 class ListRecipesFragment : Fragment() {
 
@@ -54,6 +65,14 @@ class ListRecipesFragment : Fragment() {
         return binding?.root
     }
 
+    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
+        return if (enter) {
+            AnimationUtils.loadAnimation(context, R.anim.from_top)
+        } else {
+            AnimationUtils.loadAnimation(context, R.anim.to_bottom)
+        }
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         MyApplication.appComponent.inject(this)
@@ -67,6 +86,13 @@ class ListRecipesFragment : Fragment() {
         initialiseObservers()
         binding?.run {
             viewModel.run {
+                idNestedSV.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
+                    if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
+                        page.observe(viewLifecycleOwner) {
+                            getDataFromAPI(it)
+                        }
+                    }
+                })
                 fetchRecipeByQuery(getRandomTypeOfDish())
                 searchEditText.doAfterTextChanged {
                     onSearchQuery(it.toString())
@@ -92,6 +118,31 @@ class ListRecipesFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun getDataFromAPI(url: String) {
+        val listRecipes: ArrayList<Recipe> = arrayListOf()
+        val queue = Volley.newRequestQueue(requireContext())
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                try {
+                    val hits = response.getJSONArray("hits")
+                    for (i in 0 until hits.length()) {
+                        val parser = JsonParser()
+                        val mJson =
+                            parser.parse(hits.getJSONObject(i).getJSONObject("recipe").toString())
+                        val gson = Gson()
+                        val oneRecipe: Recipe = gson.fromJson(mJson, Recipe::class.java)
+                        listRecipes.add(oneRecipe)
+                    }
+                    initAdapter(listRecipes)
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            }) {
+        }
+        queue.add(jsonObjectRequest)
     }
 
     private fun createChips(name: String?) {
@@ -141,6 +192,7 @@ class ListRecipesFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun readFirebaseData() {
         auth.uid?.let {
             database.child(it).get().addOnSuccessListener { data ->
@@ -181,7 +233,7 @@ class ListRecipesFragment : Fragment() {
                 }
                 RecipeLoadingState.INVALID_API_KEY -> {
                     statusButton.visibility = View.VISIBLE
-                    statusButton.text = "Invalid api key"
+                    statusButton.setText(R.string.invalid_api_key)
                     recyclerView.visibility = View.GONE
                     loadingProgressBar.visibility = View.GONE
                 }
@@ -198,12 +250,10 @@ class ListRecipesFragment : Fragment() {
                             id
                         )
                     findTopNavController().navigate(action)
-
                 }
                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
             }
             (recyclerView.adapter as? ListRecipesAdapter)?.setList(list)
-
         }
     }
 }

@@ -16,13 +16,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/bottom_nav_graph" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/chipNavigationBar"
-        android:layout_width="0dp"
+    <nl.joery.animatedbottombar.AnimatedBottomBar
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:abb_animationDuration="1000"
+        app:abb_indicatorAppearance="round"
+        app:abb_indicatorColor="@color/red"
+        app:abb_indicatorHeight="@dimen/dp_5"
+        app:abb_indicatorMargin="@dimen/dp_16"
+        app:abb_rippleColor="@color/purple"
+        app:abb_rippleEnabled="true"
+        app:abb_selectedIndex="0"
+        app:abb_selectedTabType="text"
+        app:abb_tabColor="@color/green"
+        app:abb_tabColorSelected="@color/purple"
+        app:abb_tabs="@menu/menu_bottom_navigation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_bottom_navigation" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

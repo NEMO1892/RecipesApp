@@ -24,9 +24,11 @@
     <dimen name="dp_200">200dp</dimen>
     <dimen name="dp_230">230dp</dimen>
     <dimen name="dp_250">250dp</dimen>
+    <dimen name="dp_263">263dp</dimen>
     <dimen name="dp_269">269dp</dimen>
     <dimen name="dp_300">300dp</dimen>
     <dimen name="dp_350">350dp</dimen>
+    <dimen name="dp_413">413dp</dimen>
 
     <dimen name="sp_16">16sp</dimen>
     <dimen name="sp_20">20sp</dimen>

@@ -9,12 +9,12 @@ data class RecipeResponse(
 )
 
 data class Links(
-    val next: Link
+    val next: Next
 )
 
-data class Link(
+data class Next(
     val href: String,
-    val title: String
+    val title: String?
 )
 
 data class Hits(
@@ -36,7 +36,7 @@ data class Recipe(
     val shareAs: String?,
     val source: String?,
     val totalNutrients: TotalNutrients,
-    val totalTime: Int?,
+    val totalTime: Double?,
     val totalWeight: Double?,
     val uri: String,
     val url: String?,
@@ -84,34 +84,3 @@ data class Ingredient(
     val text: String,
     val weight: Double
 )
-
-//data class RecipeResponse(
-//    val from: Int,
-//    val to: Int,
-//    val count: Int,
-//    @Expose
-//    @SerializedName("_links") val _links: Links,
-//    val hits: ArrayList<Hits>
-//)
-
-//data class Links(
-//    @Expose
-//    @SerializedName("next") val next: Next
-//)
-
-//data class Self(
-//    val href: String,
-//    val title: String
-//)
-
-//data class Next(
-//    @Expose
-//    @SerializedName("href") val href: String,
-//    @Expose
-//    @SerializedName("title") val title: String?
-//)
-
-//data class Next(
-//    val href: String,
-//    val title: String
-//)

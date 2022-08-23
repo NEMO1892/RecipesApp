@@ -4,4 +4,14 @@
     <style name="RoundedSquare">
         <item name="cornerSize">10%</item>
     </style>
+
+    <style name="text_condensed_bold_style">
+        <item name="android:fontFamily">@font/cabin_condensed_bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="text_cabin_style">
+        <item name="android:fontFamily">@font/cabin</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

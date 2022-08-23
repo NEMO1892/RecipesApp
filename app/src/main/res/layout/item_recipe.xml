@@ -20,12 +20,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_5"
         android:layout_marginTop="@dimen/dp_4"
-        android:fontFamily="@font/cabin_condensed_bold"
-        android:textColor="@color/black"
         android:textSize="@dimen/sp_20"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/itemImageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/text_condensed_bold_style" />
 
     <TextView
         android:id="@+id/perServingTextView"
@@ -33,12 +32,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_5"
         android:layout_marginTop="@dimen/dp_4"
-        android:fontFamily="@font/cabin"
         android:text="@string/per_serving"
-        android:textColor="@color/black"
         android:textSize="@dimen/sp_20"
         app:layout_constraintStart_toEndOf="@id/itemImageView"
-        app:layout_constraintTop_toBottomOf="@id/labelTextView" />
+        app:layout_constraintTop_toBottomOf="@id/labelTextView"
+        style="@style/text_cabin_style" />
 
     <TextView
         android:id="@+id/caloriesTextView"
@@ -46,11 +44,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_5"
         android:layout_marginTop="@dimen/dp_4"
-        android:fontFamily="@font/cabin_condensed_bold"
-        android:textColor="@color/black"
         android:textSize="@dimen/sp_20"
         app:layout_constraintStart_toEndOf="@id/perServingTextView"
-        app:layout_constraintTop_toBottomOf="@id/labelTextView" />
+        app:layout_constraintTop_toBottomOf="@id/labelTextView"
+        style="@style/text_condensed_bold_style" />
 
     <TextView
         android:id="@+id/countServingsTextView"
@@ -58,22 +55,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_5"
         android:layout_marginTop="@dimen/dp_4"
-        android:fontFamily="@font/cabin"
         android:text="@string/servings"
-        android:textColor="@color/black"
         android:textSize="@dimen/sp_20"
         app:layout_constraintStart_toEndOf="@id/itemImageView"
-        app:layout_constraintTop_toBottomOf="@id/caloriesTextView" />
+        app:layout_constraintTop_toBottomOf="@id/caloriesTextView"
+        style="@style/text_cabin_style" />
 
     <TextView
         android:id="@+id/countTextView"
         android:layout_width="@dimen/dp_100"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_4"
-        android:fontFamily="@font/cabin"
-        android:textColor="@color/black"
         android:textSize="@dimen/sp_20"
         app:layout_constraintStart_toEndOf="@id/countServingsTextView"
-        app:layout_constraintTop_toBottomOf="@id/caloriesTextView" />
+        app:layout_constraintTop_toBottomOf="@id/caloriesTextView"
+        style="@style/text_cabin_style" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.example.recipesapp.R
 import com.example.recipesapp.databinding.ActivityMainBinding
 import com.example.recipesapp.ui.navigation.BottomNavigationFragment
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         ) {
             super.onFragmentViewCreated(fm, f, v, savedInstanceState)
             if (f is BottomNavigationFragment || f is NavHostFragment) return
+            onNavControllerActivated(f.findNavController())
         }
     }
 
@@ -39,8 +41,8 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
         val navController = getRootNavController()
         prepareRootNavController(isSignedIn(), navController)
+        onNavControllerActivated(navController)
         supportFragmentManager.registerFragmentLifecycleCallbacks(fragmentListener, true)
-
     }
 
     override fun onDestroy() {
@@ -70,6 +72,12 @@ class MainActivity : AppCompatActivity() {
             }
         )
         navController.graph = graph
+    }
+
+
+    private fun onNavControllerActivated(navController: NavController) {
+        if (this.navController == navController) return
+        this.navController = navController
     }
 
     private fun getRootNavController(): NavController {

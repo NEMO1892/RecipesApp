@@ -12,12 +12,11 @@
 
         <TextView
             android:id="@+id/titleTextView"
+            style="@style/text_condensed_bold_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_16"
-            android:fontFamily="@font/cabin_condensed_bold"
             android:gravity="center"
-            android:textColor="@color/black"
             android:textSize="@dimen/sp_40" />
 
         <EditText
@@ -39,21 +38,21 @@
             tools:ignore="Autofill" />
 
         <TextView
+            style="@style/text_condensed_bold_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_16"
             android:layout_marginTop="@dimen/dp_8"
             android:layout_marginBottom="@dimen/dp_8"
-            android:fontFamily="@font/cabin_condensed_bold"
             android:gravity="center"
             android:text="@string/diet"
-            android:textColor="@color/black"
             android:textSize="@dimen/sp_25" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/dietFilterChips"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
@@ -62,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cabin"
-                android:text="balanced"
+                android:text="@string/balanced"
                 android:textColor="@color/text_orange"
                 android:textSize="@dimen/sp_16"
 
@@ -73,7 +72,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="high-fiber"
+                android:text="@string/high_fiber"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -82,7 +81,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="high-protein"
+                android:text="@string/high_protein"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -91,7 +90,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="low-carb"
+                android:text="@string/low_carb"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -100,7 +99,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="low-fat"
+                android:text="@string/low_fat"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -109,28 +108,28 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="low-sodium"
+                android:text="@string/low_sodium"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
         </com.google.android.material.chip.ChipGroup>
 
         <TextView
+            style="@style/text_condensed_bold_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_16"
             android:layout_marginTop="@dimen/dp_8"
             android:layout_marginBottom="@dimen/dp_8"
-            android:fontFamily="@font/cabin_condensed_bold"
             android:gravity="center"
-            android:text="Health"
-            android:textColor="@color/black"
+            android:text="@string/health"
             android:textSize="@dimen/sp_25" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/healthFilterChips"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
@@ -139,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cabin"
-                android:text="alcohol-cocktail"
+                android:text="@string/alcohol_cocktail"
                 android:textColor="@color/text_orange"
                 android:textSize="@dimen/sp_16"
                 app:chipBackgroundColor="@color/yellow_orange" />
@@ -149,7 +148,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="alcohol-free"
+                android:text="@string/alcohol_free"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -158,7 +157,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="celery-free"
+                android:text="@string/celery_free"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -167,7 +166,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="dairy-free"
+                android:text="@string/dairy_free"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -176,16 +175,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="egg-free"
-                android:textColor="@color/text_orange"
-                app:chipBackgroundColor="@color/yellow_orange" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_15"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="fish-free"
+                android:text="@string/egg_free"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -194,7 +184,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="gluten-free"
+                android:text="@string/gluten_free"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -203,7 +193,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="kosher"
+                android:text="@string/kosher"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -212,7 +202,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="fish-free"
+                android:text="@string/fish_free"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -221,7 +211,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="low-fat-abs"
+                android:text="@string/low_fat_abs"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -230,7 +220,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="low-sugar"
+                android:text="@string/low_sugar"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -239,7 +229,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="no-oil-added"
+                android:text="@string/no_oil_added"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -248,7 +238,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="peanut-free"
+                android:text="@string/peanut_free"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -257,8 +247,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="tree-nut-free"
-
+                android:text="@string/tree_nut_free"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -267,7 +256,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="red-meat-free"
+                android:text="@string/red_meat_free"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -276,7 +265,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="soy-free"
+                android:text="@string/soy_free"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -285,7 +274,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="sugar-conscious"
+                android:text="@string/sugar_conscious"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -294,7 +283,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="sulfite-free"
+                android:text="@string/sulfite_free"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -303,7 +292,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="pork-free"
+                android:text="@string/pork_free"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -312,7 +301,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="vegan"
+                android:text="@string/vegan"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -321,7 +310,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="wheat-free"
+                android:text="@string/wheat_free"
                 android:textColor="@color/text_orange"
                 app:chipBackgroundColor="@color/yellow_orange" />
 
@@ -333,10 +322,10 @@
             android:layout_height="@dimen/dp_60"
             android:layout_gravity="center"
             android:layout_margin="@dimen/dp_16"
-            android:background="@drawable/bg_button"
+            android:background="@drawable/bg_shadow_green"
             android:enabled="false"
             android:fontFamily="@font/cabin_condensed_bold"
-            android:text="Search"
+            android:text="@string/search"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_20" />

@@ -34,5 +34,36 @@
     <string name="something_went_wrong_please_try_again_later">Something went wrong, please try again later!</string>
     <string name="new_photo_saved">new photo saved</string>
     <string name="failure">Failure</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
+    <string name="favourites">Favourites</string>
+    <string name="invalid_api_key">Invalid Api Key</string>
+    <string name="wheat_free">wheat-free</string>
+    <string name="vegan">vegan</string>
+    <string name="pork_free">pork-free</string>
+    <string name="sulfite_free">sulfite-free</string>
+    <string name="sugar_conscious">sugar-conscious</string>
+    <string name="soy_free">soy-free</string>
+    <string name="red_meat_free">red-meat-free</string>
+    <string name="tree_nut_free">tree-nut-free</string>
+    <string name="peanut_free">peanut-free</string>
+    <string name="no_oil_added">no-oil-added</string>
+    <string name="low_sugar">low-sugar</string>
+    <string name="low_fat_abs">low-fat-abs</string>
+    <string name="fish_free">fish-free</string>
+    <string name="kosher">kosher</string>
+    <string name="gluten_free">gluten-free</string>
+    <string name="egg_free">egg-free</string>
+    <string name="dairy_free">dairy-free</string>
+    <string name="celery_free">celery-free</string>
+    <string name="alcohol_free">alcohol-free</string>
+    <string name="alcohol_cocktail">alcohol-cocktail</string>
+    <string name="low_sodium">low-sodium</string>
+    <string name="low_fat">low-fat</string>
+    <string name="low_carb">low-carb</string>
+    <string name="high_protein">high-protein</string>
+    <string name="high_fiber">high-fiber</string>
+    <string name="balanced">balanced</string>
+    <string name="save">Save</string>
 
 </resources>

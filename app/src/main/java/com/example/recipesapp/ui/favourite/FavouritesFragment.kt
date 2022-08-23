@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.recipesapp.R
 import com.example.recipesapp.databinding.FragmentFavouritesBinding
 import com.example.recipesapp.di.MyApplication
 import com.example.recipesapp.model.Recipe
@@ -32,6 +35,14 @@ class FavouritesFragment : Fragment() {
     ): View? {
         binding = FragmentFavouritesBinding.inflate(inflater, container, false)
         return binding?.root
+    }
+
+    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
+        return if (enter) {
+            AnimationUtils.loadAnimation(context, R.anim.from_top)
+        } else {
+            AnimationUtils.loadAnimation(context, R.anim.to_bottom)
+        }
     }
 
     override fun onAttach(context: Context) {

@@ -1,17 +1,18 @@
 package com.example.recipesapp.ui.navigation
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.animation.BounceInterpolator
+import androidx.appcompat.view.menu.MenuBuilder
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import com.example.recipesapp.R
 import com.example.recipesapp.databinding.FragmentBottomSheetBinding
 import com.example.recipesapp.di.MyApplication
+import nl.joery.animatedbottombar.AnimatedBottomBar
 import javax.inject.Inject
 
 class BottomNavigationFragment : Fragment() {
@@ -39,21 +40,26 @@ class BottomNavigationFragment : Fragment() {
             ViewModelProvider(this, viewModelProvider)[BottomNavigationViewModel::class.java]
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding?.run {
-
+            viewModel.run {
+                listDisneyRecipes.observe(viewLifecycleOwner) {
+                    bottomBar.setBadgeAtTabId(
+                        R.id.favourites_graph,
+                        AnimatedBottomBar.Badge("${it.size}")
+                    )
+                }
+                getAllRecipes()
+            }
             val navHost =
                 childFragmentManager.findFragmentById(R.id.bottom_nav_container) as NavHostFragment
             val navController = navHost.navController
-            NavigationUI.setupWithNavController(chipNavigationBar, navController)
-
-
-//            viewModel.run {
-//                listDisneyRecipes.observe(viewLifecycleOwner) {
-//                    chipNavigationBar.showBadge(R.id.liked, it.size)
-//                }
-//                getAllRecipes()
-//            }
+            val menuBar = MenuBuilder(context)
+            MenuInflater(context).inflate(R.menu.menu_bottom_navigation, menuBar)
+            bottomBar.animationInterpolator = BounceInterpolator()
+            bottomBar.setupWithNavController(menuBar, navController)
         }
     }
+
 }

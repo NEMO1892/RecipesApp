@@ -9,13 +9,13 @@ import retrofit2.http.Query
 
 interface EdamamApi {
 
+
     @GET("/api/recipes/v2")
     suspend fun searchRecipes(
-        @Query("type") type: String? = "public",
         @Query("q") query: String,
         @Query("app_key") appKey: String? = APP_KEY,
+        @Query("type") type: String? = "public",
         @Query("app_id") appId: String? = APP_ID,
-        @Query("random") random: Boolean? = true,
         @Query("diet") diet: String? = null,
         @Query("health") health: String? = null
     ): Response<RecipeResponse>

@@ -18,6 +18,8 @@ class ListRecipesViewModel(
 
     val recipeLoadingStateLiveData = MutableLiveData<RecipeLoadingState>()
 
+    val page = MutableLiveData<String>()
+
     private var debouncePeriod: Long = 800
 
     private var searchJob: Job? = null
@@ -38,6 +40,7 @@ class ListRecipesViewModel(
                 recipeLoadingStateLiveData.postValue(RecipeLoadingState.LOADING)
                 val response = repository.searchRecipes(query = query, diet = diet, health = heath)
                 if (response.isSuccessful) {
+                    page.postValue(response.body()?._links?.next?.href)
                     listRecipes.postValue(response.body()?.hits?.map {
                         it.recipe
                     } as ArrayList<Recipe>)
