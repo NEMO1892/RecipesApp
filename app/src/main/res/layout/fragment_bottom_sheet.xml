@@ -20,6 +20,7 @@
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@color/white"
         app:abb_animationDuration="1000"
         app:abb_indicatorAppearance="round"

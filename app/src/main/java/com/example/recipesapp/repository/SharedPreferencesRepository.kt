@@ -44,8 +44,8 @@ class SharedPreferencesRepository @Inject constructor(context: Context) {
         }
     }
 
-    private fun getListTypesOfDishes(): ArrayList<String> {
-        val listType = object : TypeToken<ArrayList<String>>() {}.type
+    private fun getListTypesOfDishes(): MutableSet<String> {
+        val listType = object : TypeToken<MutableSet<String>>() {}.type
         var stringTypeOfDish = sharedPreferences.getString(LIST_TYPES_OF_DISHES, "")
         if (stringTypeOfDish.isNullOrBlank()) {
             saveListTypesOfDishes()

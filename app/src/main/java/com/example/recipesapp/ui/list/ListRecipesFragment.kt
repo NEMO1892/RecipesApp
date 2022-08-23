@@ -40,6 +40,8 @@ import javax.inject.Inject
 
 class ListRecipesFragment : Fragment() {
 
+    private var mutableOnePage: String = ""
+
     private var binding: FragmentListRecipesBinding? = null
 
     private lateinit var viewModel: ListRecipesViewModel
@@ -89,8 +91,9 @@ class ListRecipesFragment : Fragment() {
                 idNestedSV.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
                     if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
                         page.observe(viewLifecycleOwner) {
-                            getDataFromAPI(it)
+                            mutableOnePage = it
                         }
+                        getDataFromAPI(mutableOnePage)
                     }
                 })
                 fetchRecipeByQuery(getRandomTypeOfDish())
@@ -128,6 +131,8 @@ class ListRecipesFragment : Fragment() {
             { response ->
                 try {
                     val hits = response.getJSONArray("hits")
+                    val onePage =
+                        response.getJSONObject("_links").getJSONObject("next").getString("href")
                     for (i in 0 until hits.length()) {
                         val parser = JsonParser()
                         val mJson =
@@ -136,7 +141,8 @@ class ListRecipesFragment : Fragment() {
                         val oneRecipe: Recipe = gson.fromJson(mJson, Recipe::class.java)
                         listRecipes.add(oneRecipe)
                     }
-                    initAdapter(listRecipes)
+                    viewModel.page.postValue(onePage)
+                    initAdapter(listRecipes, false)
                 } catch (e: JSONException) {
                     e.printStackTrace()
                 }
@@ -241,7 +247,7 @@ class ListRecipesFragment : Fragment() {
         }
     }
 
-    private fun initAdapter(list: ArrayList<Recipe>) {
+    private fun initAdapter(list: ArrayList<Recipe>, flag: Boolean = true) {
         binding?.run {
             if (recyclerView.adapter == null) {
                 recyclerView.adapter = ListRecipesAdapter { id: String ->
@@ -253,7 +259,11 @@ class ListRecipesFragment : Fragment() {
                 }
                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
             }
-            (recyclerView.adapter as? ListRecipesAdapter)?.setList(list)
+            if (flag) {
+                (recyclerView.adapter as? ListRecipesAdapter)?.setList(list)
+            } else {
+                (recyclerView.adapter as? ListRecipesAdapter)?.addList(list)
+            }
         }
     }
 }

@@ -151,89 +151,89 @@ class ProfileFragment : Fragment() {
         }
     }
 
-private fun readFirebaseData() {
-    auth.uid?.let {
-        database.child(it).get().addOnSuccessListener { data ->
-            val name = data.child("profileName").value as String?
-            val email = data.child("email").value as String?
-            binding?.profileNameTextView?.text = name
-            binding?.emailTextView?.text = email
+    private fun readFirebaseData() {
+        auth.uid?.let {
+            database.child(it).get().addOnSuccessListener { data ->
+                val name = data.child("profileName").value as String?
+                val email = data.child("email").value as String?
+                binding?.profileNameTextView?.text = name
+                binding?.emailTextView?.text = email
+            }
+                .addOnFailureListener {
+                    Snackbar.make(
+                        requireView(),
+                        R.string.something_went_wrong_please_try_again_later,
+                        Snackbar.LENGTH_LONG
+                    )
+                        .setAction("Ok") {}
+                        .show()
+                }
         }
-            .addOnFailureListener {
-                Snackbar.make(
-                    requireView(),
-                    R.string.something_went_wrong_please_try_again_later,
-                    Snackbar.LENGTH_LONG
+    }
+
+    private fun saveFirebaseData() {
+        auth.uid?.let {
+            database.child(it).setValue(
+                User(
+                    email = binding?.emailTextView?.text.toString(),
+                    profileName = binding?.profileNameTextView?.text.toString()
                 )
+            ).addOnSuccessListener {
+                Snackbar.make(requireView(), R.string.new_profile_name_saved, Snackbar.LENGTH_LONG)
+                    .setAction("Ok") {}
+                    .show()
+            }
+                .addOnFailureListener {
+                    Snackbar.make(
+                        requireView(),
+                        R.string.something_went_wrong_please_try_again_later,
+                        Snackbar.LENGTH_LONG
+                    )
+                        .setAction("Ok") {}
+                        .show()
+                }
+        }
+    }
+
+    private fun savePhotoToStorage(uri: Uri) {
+        val storageReference = storage.getReference("images/${auth.uid}")
+        storageReference.putFile(uri)
+            .addOnCompleteListener {
+                Snackbar.make(requireView(), R.string.new_photo_saved, Snackbar.LENGTH_LONG)
+                    .setAction("Ok") {}
+                    .show()
+            }
+            .addOnFailureListener {
+                Snackbar.make(requireView(), R.string.failure, Snackbar.LENGTH_LONG)
                     .setAction("Ok") {}
                     .show()
             }
     }
-}
 
-private fun saveFirebaseData() {
-    auth.uid?.let {
-        database.child(it).setValue(
-            User(
-                email = binding?.emailTextView?.text.toString(),
-                profileName = binding?.profileNameTextView?.text.toString()
+    private fun takePhotoFromStorage() {
+        binding?.run {
+            val storageReference = storage.getReference("images/" + auth.uid)
+            val localFile = File.createTempFile("tempFile", ".jpg")
+            storageReference.getFile(localFile)
+                .addOnSuccessListener {
+                    val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+                    profileImageView.setImageBitmap(bitmap)
+                    loadingProgressBar.visibility = View.INVISIBLE
+                }
+                .addOnFailureListener {
+                    profileImageView.setImageResource(R.drawable.ic_default_profile_photo)
+                    loadingProgressBar.visibility = View.INVISIBLE
+                }
+        }
+    }
+
+    private fun getImageUri(inImage: Bitmap): Uri? {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path =
+            MediaStore.Images.Media.insertImage(
+                requireContext().contentResolver, inImage, "Title", null
             )
-        ).addOnSuccessListener {
-            Snackbar.make(requireView(), R.string.new_profile_name_saved, Snackbar.LENGTH_LONG)
-                .setAction("Ok") {}
-                .show()
-        }
-            .addOnFailureListener {
-                Snackbar.make(
-                    requireView(),
-                    R.string.something_went_wrong_please_try_again_later,
-                    Snackbar.LENGTH_LONG
-                )
-                    .setAction("Ok") {}
-                    .show()
-            }
+        return Uri.parse(path)
     }
-}
-
-private fun savePhotoToStorage(uri: Uri) {
-    val storageReference = storage.getReference("images/${auth.uid}")
-    storageReference.putFile(uri)
-        .addOnCompleteListener {
-            Snackbar.make(requireView(), R.string.new_profile_name_saved, Snackbar.LENGTH_LONG)
-                .setAction("Ok") {}
-                .show()
-        }
-        .addOnFailureListener {
-            Snackbar.make(requireView(), R.string.failure, Snackbar.LENGTH_LONG)
-                .setAction("Ok") {}
-                .show()
-        }
-}
-
-private fun takePhotoFromStorage() {
-    binding?.run {
-        val storageReference = storage.getReference("images/" + auth.uid)
-        val localFile = File.createTempFile("tempFile", ".jpg")
-        storageReference.getFile(localFile)
-            .addOnSuccessListener {
-                val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-                profileImageView.setImageBitmap(bitmap)
-                loadingProgressBar.visibility = View.INVISIBLE
-            }
-            .addOnFailureListener {
-                profileImageView.setImageResource(R.drawable.ic_default_profile_photo)
-                loadingProgressBar.visibility = View.INVISIBLE
-            }
-    }
-}
-
-private fun getImageUri(inImage: Bitmap): Uri? {
-    val bytes = ByteArrayOutputStream()
-    inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-    val path =
-        MediaStore.Images.Media.insertImage(
-            requireContext().contentResolver, inImage, "Title", null
-        )
-    return Uri.parse(path)
-}
 }
